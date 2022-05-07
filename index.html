@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-page">
+            <div class="booking-container">
+                <div class="pickmovie">
+                    <label for="movie">Pick a Movie</label>
+                    <select id="movie">
+                        <option value="10">Avengers: Endgame $10</option>
+                        <option value="15">Fast and Furious $15</option>
+                        <option value="5">Toy Story $5</option>
+                        <option value="12">John Wick 4 $12</option>
+                    </select>
+                </div>
+                <div class="showcase">
+                    <ul>
+                        <li>
+                            <div class="seat Available"></div>
+                            <span>Available</span>
+                        </li>
+                        <li>
+                            <div class="seat selected"></div>
+                            <span>Selected</span>
+                        </li>
+                        <li>
+                            <div class="seat occupied"></div>
+                            <span>N/A</span>
+                        </li>
+                    </ul>
+                </div>                
+                <div class="screen"></div>
+                <div class="seat-container">
+                    <div class="row">
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat occupied"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat occupied"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                    </div>
+                    <div class="row">
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat occupied"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat occupied"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                    </div>
+                    <div class="row">
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                    </div>
+                    <div class="row">
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                    </div>
+                    <div class="row">
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                        <div class="seat"></div>
+                    </div>
+                </div>
+                <p>You have selected <span id="count">0</span> tickets with total price <span id="totalprice">0</span></p>
+                <button class="addlist">Add to the list (Max 6 Tickets)</button>
+                
+            </div>
+         <div class="ticket-container">
+            <div class="ticket-container-list"></div>
+            <p>Total tickets  - <span id="final-count">0</span>  Total price - <span id="final-totalprice">0</span></p>
+            <div class="ticket-container-btn">
+                <button class="clearlist"><ion-icon name="close"></ion-icon>Clear List</button>
+                <button class="buylist"><ion-icon name="checkmark-done"></ion-icon>Buy Tickets</button>
+            </div>        
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

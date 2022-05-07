@@ -1,0 +1,210 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #242333;
+    color: #fff;
+    font-size: 15px;
+}
+
+/* Main Page, Booking Side */
+.main-page{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.booking-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    letter-spacing: 1px;
+    width: 70%;
+}
+.pickmovie{
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+}
+.pickmovie label{
+    font-size: 120%;
+    font-weight: bold;
+}
+.pickmovie select{
+    background-color: #2f2d42;
+    color: #fff;
+    margin-left: 15px;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    font-size: 105%;
+}
+.booking-container ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    font-size: 110%;
+}
+.booking-container ul li{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+.booking-container ul li span{
+    margin-left: 15px;
+}
+.screen {
+    background-color: #fff;
+    height: 100px;
+    width: 220px;
+    margin: 30px 0;
+    box-shadow: 0 3px 10px #fff;
+}
+.row{
+    display: flex;
+}
+.seat{
+    background-color: #444451;
+    height: 15px;
+    width: 18px;
+    margin: 2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.seat:nth-of-type(2){
+    margin-right: 15px;
+}
+.seat:nth-last-of-type(2){
+    margin-left: 15px;
+}
+
+.seat:not(.occupied):hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.showcase .seat:hover,
+.seat.reserved:hover{
+    cursor: default;
+    transform: none;
+}
+.seat.selected {
+    background-color: #6feaf6;
+}
+.seat.occupied,
+.seat.reserved {
+    background-color: #fff;
+}
+/* Paragraphs */
+.booking-container p {
+    margin: 35px 0;
+    font-size: 120%;
+}
+.booking-container p span,
+.ticket-container p span {
+    color: aquamarine;
+}
+
+.ticket-container p{
+    margin-top: 10px;
+    font-size: 120%;
+    letter-spacing: 1px;
+}
+
+
+/* Buttons */
+
+.addlist, 
+.clearlist,
+.buylist {
+    background-color: #2f2d42;
+    color: #fff;
+    font-size: 110%;
+    font-style: italic;
+    padding: 5px 20px;
+    border-radius: 10px;
+}
+.addlist:hover,
+.clearlist:hover,
+.buylist:hover{
+    cursor: pointer;
+    background-color: #444451;
+}
+.clearlist:hover{
+    color: red;
+}
+.buylist:hover{
+    color: green;
+}
+
+
+/* Main Page - Ticket Side */
+
+
+.ticket-container{
+    width: 30%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+      
+}
+
+.ticket-container-list {
+    border-radius: 10px;
+    padding: 10px 10px;
+    background-color: #333249;
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+.ticket-container-btn {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Div which are created in JS */
+
+.template{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ecedef;
+    border-radius: 10px;
+    margin: 3px;
+    color: #343434;
+      
+}
+
+.rowNumber, .seatNumber, .title, .ticketprice{
+    text-transform: uppercase;
+    font-weight: normal;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 5px;
+}
+
+h2 {
+    font-size: 80%;
+    color: #525252;
+    margin: 0;
+}
+.rowNumber span,
+.seatNumber span,
+.title span,
+.ticketprice span {
+      font-size: 70%;
+      color: #858f8f;
+};
+
+
+
