@@ -12,6 +12,8 @@ let clearListBtn = document.querySelector('.clearlist')
 let ticketPrice = +movie.value;
 let seatNumber = new Array;
 
+//Ticket Functions
+
 let Ticket = function (movieName, seatNumberInrow, seatNumber, ticketPrice){
     this.movieName = movieName,
     this.row = Math.ceil(seatNumber / seatNumberInrow),
@@ -26,9 +28,6 @@ function CreateTicketObject(){
     });
     return selectedSeatObjects;    
 };
-
-
-
 function CreateHtmlTicket (obj){
         let ticketContainer = document.querySelector('.ticket-container-list'); 
         let ticketTemplate =  document.createElement('Div');
@@ -70,12 +69,19 @@ movie.addEventListener('change',(e) => {
     updateCount();
 });
 
+//Seat Select Section
+
 seatsContainer.addEventListener('click', (e) => {
     if(e.target.classList.contains('seat') && !e.target.classList.contains('occupied') && !e.target.classList.contains('reserved')){
         e.target.classList.toggle('selected')
     };
     updateCount();
 })
+
+const totalUpdate = () => {
+    finalCount.textContent = parseInt(finalCount.textContent) + parseInt(currentCount.textContent);
+    finalTotalPrice.textContent =parseInt(finalTotalPrice.textContent) + parseInt(currnetTotalPrice.textContent.substring(2))
+}
 
 addToListBtn.addEventListener('click', (e) => {
     //updateCount();
@@ -89,8 +95,7 @@ addToListBtn.addEventListener('click', (e) => {
             el.classList.add('reserved')
         }         
     })
-    finalCount.textContent = parseInt(finalCount.textContent) + parseInt(currentCount.textContent);
-    finalTotalPrice.textContent =parseInt(finalTotalPrice.textContent) + parseInt(currnetTotalPrice.textContent.substring(2))
+    totalUpdate()    
     updateCount()
 })
 
@@ -105,7 +110,6 @@ clearListBtn.addEventListener('click', (e) => {
             });
         finalCount.textContent = 0;
         finalTotalPrice.textContent = 0;
-
 })
 
 
