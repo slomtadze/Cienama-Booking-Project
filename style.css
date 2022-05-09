@@ -98,7 +98,21 @@ body{
 .seat.reserved {
     background-color: #fff;
 }
+
+/* Next/prev buttons div*/
+
+.page-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+
 /* Paragraphs */
+
+
 .booking-container p {
     margin: 35px 0;
     font-size: 120%;
@@ -119,7 +133,8 @@ body{
 
 .addlist, 
 .clearlist,
-.buylist {
+.buylist,
+.prev, .next {
     background-color: #2f2d42;
     color: #fff;
     font-size: 110%;
@@ -129,7 +144,9 @@ body{
 }
 .addlist:hover,
 .clearlist:hover,
-.buylist:hover{
+.buylist:hover,
+.prev:hover,
+.next:hover{
     cursor: pointer;
     background-color: #444451;
 }
