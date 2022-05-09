@@ -32,6 +32,8 @@ function createTickets(){
      
 };
 
+//Ticket page buttons
+
 const createButton = (page, type) => {
     return `
     <button class="${type}" data-goto="${type === 'prev' ? page - 1 : page + 1}">
@@ -41,7 +43,7 @@ const createButton = (page, type) => {
 
 const renderButton = (page, numResults, resPerPage) => {
     const pages = Math.ceil(numResults / resPerPage);
-    let button;
+    let button = '';
     if(page ===1 && pages > 1){
         button = createButton(page, 'next');
     }else if(page < pages){
@@ -51,11 +53,13 @@ const renderButton = (page, numResults, resPerPage) => {
         `;
     }else if(page === pages && page > 1){
         button = createButton(page, 'prev')
-    }
+    };
     document.querySelector(".page-buttons").insertAdjacentHTML('afterbegin', button);
 }
 
-const renderPage = (tickets, ticketsPerPage = 2, page = 2) => {
+//Ticket page render functions
+
+const renderPage = (tickets, ticketsPerPage = 2, page = 1) => {
 
     document.querySelector(".ticket-container-list").innerHTML='';
     document.querySelector(".page-buttons").innerHTML='';
@@ -89,7 +93,10 @@ const renderTicket = (ticket) => {
 
     document.querySelector('.ticket-container-list').insertAdjacentHTML('beforeend',markUp);
     
-}
+};
+
+//Seat Select Section
+
 function getMovieName(){
     return movie[movie.selectedIndex].innerText.split(' $')[0];
 };
@@ -106,7 +113,6 @@ movie.addEventListener('change',(e) => {
     updateCount();
 });
 
-//Seat Select Section
 
 seatsContainer.addEventListener('click', (e) => {
     if(e.target.classList.contains('seat') && !e.target.classList.contains('occupied') && !e.target.classList.contains('reserved')){
@@ -114,6 +120,10 @@ seatsContainer.addEventListener('click', (e) => {
     };
     updateCount();
 })
+
+
+// Add to the list button
+
 
 const totalSumUpdate = () => {
     finalCount.textContent = parseInt(finalCount.textContent) + parseInt(currentCount.textContent);
@@ -129,7 +139,6 @@ const reserveTickets = () => {
     })
 }
 
-//Add to the list button
 
 addToListBtn.addEventListener('click', (e) => {
     createTickets()
