@@ -102,14 +102,12 @@ body{
 /* Next/prev buttons div*/
 
 .page-buttons{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+   display: inline-block;
     margin-top: 10px;
     width: 100%;
 }
 .next{
-    align-self: flex-end;
+    float: right;
 }
 
 /* Paragraphs */
