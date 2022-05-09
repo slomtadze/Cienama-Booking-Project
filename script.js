@@ -14,45 +14,54 @@ let seatNumber = new Array;
 
 //Ticket Functions
 
-let Ticket = function (movieName, seatNumberInrow, seatNumber, ticketPrice){
-    this.movieName = movieName,
-    this.row = Math.ceil(seatNumber / seatNumberInrow),
-    this.seatNumber = seatNumber,
-    this.ticketPrice = parseInt(ticketPrice)
-};
+class Ticket {
+    constructor(movieName, seatNumberInrow, seatNumber, price){
+        this.movieName = movieName,
+        this.row = Math.ceil(seatNumber / seatNumberInrow),
+        this.seatNumber = seatNumber,
+        this.price = parseInt(ticketPrice) 
+    }
+}
 
-function CreateTicketObject(){
-    let selectedSeatObjects = seatNumber.map(el => {
+function createTickets(){
+    let reservedTickets = seatNumber.map(el => {
         let ticket = new Ticket(getMovieName(), 10, el, ticketPrice)
         return ticket
     });
-    return selectedSeatObjects;    
+    return reservedTickets;    
 };
-function CreateHtmlTicket (obj){
-        let ticketContainer = document.querySelector('.ticket-container-list'); 
-        let ticketTemplate =  document.createElement('Div');
-            ticketContainer.appendChild(ticketTemplate);
-            ticketTemplate.classList.add('template');
 
-function createDivElement (divClassName, spanText, h2Text){ 
-        let div =  document.createElement('Div');
-            ticketTemplate.appendChild(div);
-            div.classList.add(divClassName);
-        let span= document.createElement('span');
-            div.appendChild(span);
-            span.textContent = spanText;
-        let h2 = document.createElement('h2');
-            div.appendChild(h2);
-            h2.textContent = h2Text;    
+const renderPage = (tickets, ticketsPerPage) => {
+    const totalPages = Math.ceil(tickets / ticketsPerPage);
+    const page = tickets.slice(0,ticketsPerPage);
+
+    return page
+
 }
 
-    createDivElement('title', 'Movie Name', obj.movieName); 
-    createDivElement('rowNumber', 'Row', obj.row);
-    createDivElement('seatNumber', 'Seat', obj.seatNumber)
-    createDivElement('ticketprice', 'Price', obj.ticketPrice)
-};
+const renderTicket = (ticket) => {
+    const markUp =  `<div class="template">
+                        <div class="title">
+                            <span>Movie Name</span>
+                            <h2>${ticket.movieName}</h2>
+                        </div>
+                        <div class="rowNumber">
+                            <span>Row</span>
+                            <h2>${ticket.row}</h2>
+                        </div>
+                        <div class="seatNumber">
+                            <span>Seat</span>
+                            <h2>${ticket.seatNumber}</h2>
+                        </div>
+                        <div class="ticketprice">
+                            <span>Price</span>
+                            <h2>${ticket.price}</h2>
+                        </div>
+                    </div>`
 
-
+    document.querySelector('.ticket-container-list').insertAdjacentHTML('beforeend',markUp);
+    
+}
 function getMovieName(){
     return movie[movie.selectedIndex].innerText.split(' $')[0];
 };
@@ -78,16 +87,11 @@ seatsContainer.addEventListener('click', (e) => {
     updateCount();
 })
 
-const totalUpdate = () => {
+const totalSumUpdate = () => {
     finalCount.textContent = parseInt(finalCount.textContent) + parseInt(currentCount.textContent);
     finalTotalPrice.textContent =parseInt(finalTotalPrice.textContent) + parseInt(currnetTotalPrice.textContent.substring(2))
 }
-
-addToListBtn.addEventListener('click', (e) => {
-    //updateCount();
-    CreateTicketObject().map(el => {
-        CreateHtmlTicket(el);
-    });
+const reserveTickets = () => {
     let seatsSelected = [...document.querySelectorAll('.row .seat.selected')];
     seatsSelected.map(el => {
         if(el.classList.contains('selected')){
@@ -95,22 +99,62 @@ addToListBtn.addEventListener('click', (e) => {
             el.classList.add('reserved')
         }         
     })
-    totalUpdate()    
+}
+
+//Add to the list button
+
+addToListBtn.addEventListener('click', (e) => {
+
+    renderPage(createTickets(), 6).forEach(renderTicket);
+    reserveTickets()
+    totalSumUpdate()    
     updateCount()
 })
 
-clearListBtn.addEventListener('click', (e) => {
+// Clear Button 
+
+const removeTickets = () => {
     let ticketsInList = [...document.querySelectorAll('.template')];
-            ticketsInList.map((e) => {
-                e.remove()  
-            });
+        ticketsInList.map((e) => {
+            e.remove()  
+        });
+}
+const clearReservedList = () => {
     let seatsResrved = [...document.querySelectorAll('.row .seat.reserved')];
-            seatsResrved.map((e) => {
-                e.classList.remove('reserved')
-            });
-        finalCount.textContent = 0;
-        finalTotalPrice.textContent = 0;
+        seatsResrved.map((e) => {
+            e.classList.remove('reserved')
+        });
+}
+const resetTotalSum = () => {
+    finalCount.textContent = 0;
+    finalTotalPrice.textContent = 0;
+}
+clearListBtn.addEventListener('click', (e) => {
+    removeTickets()
+    clearReservedList()
+    resetTotalSum()    
 })
+
+/* 
+<div class="template">
+<div class="title">
+<span>Movie Name</span>
+<h2>Avengers: Endgame</h2>
+</div>
+<div class="rowNumber">
+<span>Row</span>
+<h2>3</h2>
+</div>
+<div class="seatNumber">
+<span>Seat</span>
+<h2>25</h2>
+</div>
+<div class="ticketprice">
+<span>Price</span>
+<h2>10</h2>
+</div>
+</div>
+ */
 
 
 
