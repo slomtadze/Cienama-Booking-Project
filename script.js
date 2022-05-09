@@ -36,7 +36,7 @@ function createTickets(){
 
 const createButton = (page, type) => {
     return `
-    <button class="${type}" data-goto="${type === 'prev' ? page - 1 : page + 1}">
+    <button class="btn-inline ${type}" data-goto="${type === 'prev' ? page - 1 : page + 1}">
     <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
     </button>    `
 }
@@ -57,9 +57,20 @@ const renderButton = (page, numResults, resPerPage) => {
     document.querySelector(".page-buttons").insertAdjacentHTML('afterbegin', button);
 }
 
+document.querySelector(".page-buttons").addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-inline');
+    if(btn){
+        const goToPage = +btn.dataset.goto;
+        document.querySelector(".ticket-container-list").innerHTML='';
+        renderPage(ticketsArray, 6, goToPage);
+    }
+        
+})
+
+
 //Ticket page render functions
 
-const renderPage = (tickets, ticketsPerPage = 2, page = 1) => {
+const renderPage = (tickets, ticketsPerPage = 6, page = 1) => {
 
     document.querySelector(".ticket-container-list").innerHTML='';
     document.querySelector(".page-buttons").innerHTML='';
