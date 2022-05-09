@@ -22,21 +22,49 @@ class Ticket {
         this.price = parseInt(ticketPrice) 
     }
 }
-
+let ticketsArray = []
 function createTickets(){
-    let reservedTickets = seatNumber.map(el => {
+    seatNumber.map(el => {
         let ticket = new Ticket(getMovieName(), 10, el, ticketPrice)
-        return ticket
+        ticketsArray.push(ticket)
+        
     });
-    return reservedTickets;    
+     
 };
 
-const renderPage = (tickets, ticketsPerPage) => {
-    const totalPages = Math.ceil(tickets / ticketsPerPage);
-    const page = tickets.slice(0,ticketsPerPage);
+const createButton = (page, type) => {
+    return `
+    <button class="${type}" data-goto="${type === 'prev' ? page - 1 : page + 1}">
+    <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
+    </button>    `
+}
 
-    return page
+const renderButton = (page, numResults, resPerPage) => {
+    const pages = Math.ceil(numResults / resPerPage);
+    let button;
+    if(page ===1 && pages > 1){
+        button = createButton(page, 'next');
+    }else if(page < pages){
+        button = `
+            ${createButton(page, 'prev')}
+            ${createButton(page, 'next')}
+        `;
+    }else if(page === pages && page > 1){
+        button = createButton(page, 'prev')
+    }
+    document.querySelector(".page-buttons").insertAdjacentHTML('afterbegin', button);
+}
 
+const renderPage = (tickets, ticketsPerPage = 2, page = 2) => {
+
+    document.querySelector(".ticket-container-list").innerHTML='';
+    document.querySelector(".page-buttons").innerHTML='';
+
+    const start = (page - 1) * ticketsPerPage;
+    const end = page * ticketsPerPage;
+
+    tickets.slice(start,end).forEach(renderTicket);
+    renderButton(page, ticketsArray.length, ticketsPerPage)
 }
 
 const renderTicket = (ticket) => {
@@ -104,8 +132,8 @@ const reserveTickets = () => {
 //Add to the list button
 
 addToListBtn.addEventListener('click', (e) => {
-
-    renderPage(createTickets(), 6).forEach(renderTicket);
+    createTickets()
+    renderPage(ticketsArray);
     reserveTickets()
     totalSumUpdate()    
     updateCount()
@@ -124,6 +152,7 @@ const clearReservedList = () => {
         seatsResrved.map((e) => {
             e.classList.remove('reserved')
         });
+    ticketsArray = [];
 }
 const resetTotalSum = () => {
     finalCount.textContent = 0;
@@ -135,26 +164,7 @@ clearListBtn.addEventListener('click', (e) => {
     resetTotalSum()    
 })
 
-/* 
-<div class="template">
-<div class="title">
-<span>Movie Name</span>
-<h2>Avengers: Endgame</h2>
-</div>
-<div class="rowNumber">
-<span>Row</span>
-<h2>3</h2>
-</div>
-<div class="seatNumber">
-<span>Seat</span>
-<h2>25</h2>
-</div>
-<div class="ticketprice">
-<span>Price</span>
-<h2>10</h2>
-</div>
-</div>
- */
+
 
 
 

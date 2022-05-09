@@ -108,7 +108,9 @@ body{
     margin-top: 10px;
     width: 100%;
 }
-
+.next{
+    align-self: flex-end;
+}
 
 /* Paragraphs */
 
@@ -142,6 +144,7 @@ body{
     padding: 5px 20px;
     border-radius: 10px;
 }
+
 .addlist:hover,
 .clearlist:hover,
 .buylist:hover,
